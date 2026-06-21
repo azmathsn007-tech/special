@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Naman ❤️</title>
+    <!-- Romantic Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&family=Playfair+Display:italic,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blush: #ffb7c5;
+            --lavender: #e6e6fa;
+            --cream: #fffaf0;
+            --gold: #d4af37;
+            --deep-rose: #c2185b;
+            --soft-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream);
+            color: #444;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Background Particles --- */
+        #particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: linear-gradient(135deg, #fffaf0 0%, #f3e5f5 100%);
+        }
+
+        .heart {
+            position: absolute;
+            color: var(--blush);
+            opacity: 0.6;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* --- Audio Controls --- */
+        .music-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: var(--soft-shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-music {
+            background: var(--blush);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        /* --- Hero Section --- */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: var(--deep-rose);
+            margin-bottom: 20px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .hero-text {
+            font-size: clamp(1rem, 4vw, 1.3rem);
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        .btn-main {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            background-color: var(--deep-rose);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(194, 24, 91, 0.3);
+            text-decoration: none;
+        }
+
+        .btn-main:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(194, 24, 91, 0.5);
+        }
+
+        /* --- Love Letter Section --- */
+        #love-letter {
+            display: none;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--soft-shadow);
+            border: 1px solid var(--lavender);
+            position: relative;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: 1s all ease-in-out;
+        }
+
+        #love-letter.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .letter-content {
+            font-family: 'Playfair Display', serif;
+            line-height: 2;
+            font-size: 1.1rem;
+            white-space: pre-line;
+        }
+
+        .signature {
+            margin-top: 30px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--deep-rose);
+        }
+
+        /* --- Counter Section --- */
+        .counter-section {
+            background: var(--lavender);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .counter-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .counter-box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            min-width: 100px;
+            box-shadow: var(--soft-shadow);
+        }
+
+        .counter-box span {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--deep-rose);
+        }
+
+        /* --- Timeline Section --- */
+        .section-title {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin: 80px 0 40px;
+            color: var(--deep-rose);
+        }
+
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: var(--blush);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s;
+        }
+
+        .timeline-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: var(--soft-shadow);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        /* --- Reasons Grid --- */
+        .reasons-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .reason-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid var(--blush);
+            box-shadow: var(--soft-shadow);
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .reason-card:hover {
+            transform: translateY(-5px);
+            background: var(--lavender);
+        }
+
+        /* --- Modal --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(to top, var(--blush), transparent);
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes popIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .timeline::before { left: 20px; }
+            .timeline-content { width: 85%; margin-left: 40px; }
+            .timeline-item, .timeline-item:nth-child(even) { flex-direction: row; }
+            .reasons-container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Animation Container -->
+    <div id="particles-container"></div>
+
+    <!-- Music Player -->
+    <div class="music-controls">
+        <span style="font-size: 11px; color: #666; font-weight: 600;">Dil ki Dhun</span>
+        <button class="btn-music" onclick="toggleMusic()" id="musicBtn">
+            ▶️
+        </button>
+        <!-- REPLACE THE SRC BELOW WITH YOUR DIRECT MP3 LINK -->
+        <audio id="bgMusic" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Hero Section -->
+    <header>
+        <h1>To My Dearest Naman ❤️</h1>
+        <p class="hero-text">Tumhare saath har pal ek khoobsurat sapne jaisa lagta hai. Thank you for filling my life with so much love and endless smiles.</p>
+        <button class="btn-main" onclick="revealLetter()">Open My Heart</button>
+    </header>
+
+    <!-- Hidden Love Letter -->
+    <section id="love-letter">
+        <div class="letter-content">
+            Meri pyari Naman,
+
+            I may not always find the perfect words, but I hope you always feel the depth of my love. Tum meri life mein woh roshni ho jiski maine kabhi umeed bhi nahi ki thi. Your smile comforts me, your laughter heals me, and your presence makes every ordinary moment extraordinary.
+
+            Hamesha mera saath dene ke liye aur mujhe jaisa main hoon waisa hi accept karne ke liye thank you. No matter what life brings our way, I promise to stand beside you. Tumhari har khushi mein, aur har mushkil waqt mein tumhara haath pakad kar khada rahunga.
+
+            You are the most beautiful chapter of my life, and I hope hamari story yunhi pyaar aur trust ke saath aage badhti rahe.
+
+            Hamesha sirf tumhara,
+            <div class="signature">Azmat</div>
+        </div>
+    </section>
+
+    <!-- Counter Section -->
+    <section class="counter-section">
+        <h2 class="section-title" style="margin-top: 0;">I've loved you for...</h2>
+        <div class="counter-grid" id="timer">
+            <div class="counter-box"><span id="days">0</span> Days</div>
+            <div class="counter-box"><span id="hours">0</span> Hours</div>
+            <div class="counter-box"><span id="minutes">0</span> Mins</div>
+            <div class="counter-box"><span id="seconds">0</span> Secs</div>
+        </div>
+        <p style="margin-top: 20px; font-style: italic; color: #888;">Aur ye toh bas shuruaat hai...</p>
+    </section>
+
+    <!-- Timeline Section -->
+    <h2 class="section-title">Our Little Story</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h3>The Day We Met</h3>
+                <p>Woh din jab hamari pehli baar baat hui thi. Everything changed for the better that day.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h3>Late Night Baatein</h3>
+                <p>When hours felt like seconds on the phone. Neend gayab thi par dil bahut khush tha.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h3>Pagalpanti & Laughter</h3>
+                <p>Woh moments jab hum itna haste the ki pet dukhne lagta tha. Your laugh is my favorite sound.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h3>Together in Mushkil Din</h3>
+                <p>Jab bhi main low feel karta hoon, tum hamesha mujhe sambhaal leti ho. You are my strength.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <h3>Hamare Sapne</h3>
+                <p>Everything we want to achieve together. I can't wait to build a whole world with you.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 100 Reasons Section -->
+    <h2 class="section-title">100 Reasons Why I Love You</h2>
+    <div class="reasons-container" id="reasonsGrid">
+        <!-- Generated by JavaScript -->
+    </div>
+
+    <!-- Special Surprise Button -->
+    <div style="text-align: center; margin: 50px 0;">
+        <button class="btn-main" onclick="showSurprise()">A Special Surprise</button>
+    </div>
+
+    <!-- Ending Section -->
+    <footer>
+        <p class="hero-text" style="margin: 0 auto 20px;">"Thank you for being my Naman. No matter how many seasons pass, mera dil hamesha tumhe hi chunega."</p>
+        <div class="signature">With all my love, Azmat ❤️</div>
+    </footer>
+
+    <!-- Surprise Modal -->
+    <div class="modal" id="surpriseModal" onclick="closeSurprise()">
+        <div class="modal-content">
+            <h2 style="font-family: 'Dancing Script'; font-size: 2.5rem; color: var(--deep-rose); margin-bottom: 20px;">Mera Wada</h2>
+            <p style="line-height: 1.6; font-size: 1.1rem;">"Zindagi humein kahin bhi le jaaye, you'll always have a home in my heart. I love you more than words can say, Naman. ❤️"</p>
+            <button class="btn-main" style="margin-top: 20px;" onclick="closeSurprise()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. Background Particles ---
+        function createHearts() {
+            const container = document.getElementById('particles-container');
+            const heartIcons = ['❤️', '💖', '✨', '🌸'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.duration = (Math.random() * 3 + 3) + 's';
+                container.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 6000);
+            }, 500);
+        }
+        createHearts();
+
+        // --- 2. Live Counter (7 Years and 10 Months ago) ---
+        // Setting start date to approximately 7 years and 10 months from current date
+        const today = new Date();
+        const startDate = new Date(today.getFullYear() - 7, today.getMonth() - 10, today.getDate());
+
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }
+        setInterval(updateCounter, 1000);
+
+        // --- 3. Reveal Letter ---
+        function revealLetter() {
+            const letter = document.getElementById('love-letter');
+            letter.classList.add('visible');
+            letter.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- 4. Music Toggle ---
+        const audio = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                musicBtn.innerText = '⏸️';
+            } else {
+                audio.pause();
+                musicBtn.innerText = '▶️';
+            }
+        }
+
+        // --- 5. Generate 100 Reasons (Hinglish Infused) ---
+        const reasons = [
+            "The way your eyes sparkle when you're happy.",
+            "Jis tarah se tum mujhe samajhti ho, koi nahi samajhta.",
+            "Your incredible kindness to everyone.",
+            "Tumhara gussa (even though it's cute).",
+            "Your beautiful sense of humor.",
+            "Tumhare saath hone se sab kuch safe lagta hai.",
+            "Your ambition and hard work.",
+            "The way you say my name.",
+            "Tumhe meri chhoti chhoti baatein yaad rehti hain.",
+            "How you support my biggest dreams.",
+            "Tumhari morning voice.",
+            "The way you handle me when I'm annoying.",
+            "Your care for family values.",
+            "Tumhara dimaag aur tumhari baatein.",
+            "Ordinary days ko bhi special bana deti ho.",
+            "You inspire me to be a better man.",
+            "Your taste in food and how we share meals.",
+            "The way you scrunch your nose when you laugh.",
+            "Tumhari himmat.",
+            "Bina judge kiye meri puri baat sunna.",
+            "Hamari similar music choice.",
+            "How you try to see the good in everyone.",
+            "Tumhari jhappi (the best hug ever).",
+            "Tumhare baal.",
+            "The way you push me to grow.",
+            "Tum meri best friend pehle ho, girlfriend baad mein.",
+            "Your infectious energy.",
+            "How you look in desi clothes.",
+            "Your honesty.",
+            "Har din mujhe special feel karana.",
+            "Your soft hands in mine.",
+            "The way you stand up for yourself.",
+            "Tumhara maaf kar dene wala nature.",
+            "Sukoon, jo mujhe sirf tumhare paas milta hai.",
+            "Your adventurous spirit.",
+            "How you handle my mood swings with love.",
+            "Tumhari khoobsurat rooh.",
+            "Ghar jaisa feel hota hai tumhare saath.",
+            "The way you treat animals.",
+            "Your creative ideas.",
+            "Pehli person jise main sab batana chahta hoon.",
+            "Meri khushi mein tumhari double khushi.",
+            "Your humility.",
+            "Tumhara room mein aate hi mahol badal dena.",
+            "Your resilience.",
+            "Haste haste rula dena (the good way!).",
+            "Small things ke liye tumhara appreciation.",
+            "Tumhari loyalty.",
+            "Your golden advice.",
+            "Jis tarah tum mujhe dekhti ho.",
+            "Tumhari khushbu.",
+            "Mera sukoon in this chaotic world.",
+            "Your generosity.",
+            "Tumhara uniqueness.",
+            "How you respect my space.",
+            "Tumhara passion.",
+            "The way you tuck your hair back.",
+            "Tumhe mujh par mujhse zyada bharosa hai.",
+            "Your sweet, sweet voice.",
+            "Stress mein bhi tumhara calm rehna.",
+            "Always being there to hold my hand.",
+            "Your curiosity about everything.",
+            "Tumhara unconditional wala pyaar.",
+            "Tumhari focus on work.",
+            "I feel like the luckiest man on Earth.",
+            "Your optimism.",
+            "Hamare relationship ki respect karna.",
+            "Tumhare thoughtful gifts.",
+            "Your sense of style.",
+            "The way you explain things.",
+            "Tumhara mujhe pura feel karana.",
+            "Your bravery.",
+            "Jab main beemar hota hoon, tumhara khayal rakhna.",
+            "Your bubbly personality.",
+            "Never giving up on 'US'.",
+            "The way you protect our bond.",
+            "Tumhari million-dollar smile.",
+            "Finding beauty in simple things.",
+            "Tumhara encouragement.",
+            "Your wisdom.",
+            "Tumhara mujhe hamesha priority dena.",
+            "Your gentleness.",
+            "Tumhara sachha hona.",
+            "Future ke plans jo hum saath banate hain.",
+            "Your inner sparkle.",
+            "Tumhare saath kuch na karna bhi achha lagta hai.",
+            "The way you make me feel important.",
+            "Ek look mein mera dil jeet lena.",
+            "Tum meri soulmate ho.",
+            "Hamari ladaiyon ke baad ka extra pyaar.",
+            "Your heart is pure gold.",
+            "You are the missing piece of my life.",
+            "The way you love life.",
+            "Tumhara point of view.",
+            "Tum mujhse judi har baat ka dhyan rakhti ho.",
+            "Haath pakad kar chalna.",
+            "Your capacity to love deeply.",
+            "Tum mera ghar ho.",
+            "Simply because you are my Naman.",
+            "I love you more with every passing second."
+        ];
+
+        const grid = document.getElementById('reasonsGrid');
+        reasons.forEach((reason, index) => {
+            const card = document.createElement('div');
+            card.classList.add('reason-card');
+            card.innerHTML = `<strong>${index + 1}.</strong> ${reason}`;
+            grid.appendChild(card);
+        });
+
+        // --- 6. Scroll Animations ---
+        const observerOptions = { threshold: 0.2 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item').forEach(item => observer.observe(item));
+
+        // --- 7. Modal Logic ---
+        function showSurprise() {
+            document.getElementById('surpriseModal').style.display = 'flex';
+        }
+        function closeSurprise() {
+            document.getElementById('surpriseModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
